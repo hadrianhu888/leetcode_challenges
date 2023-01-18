@@ -1,5 +1,20 @@
 class Node:
+    """Definition for singly linked list of nodes"""
+
     def __init__(self, data):
+        self.data = data
+        self.next = None
+
+    """Definition for doubly linked list of nodes"""
+
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.previous = None
+
+    """Definition for circular list of nodes"""
+
+    def __init__(self, data): 
         self.data = data
         self.next = None
 
@@ -44,7 +59,35 @@ class LinkedList:
                 new_node.next = node.next
                 node.next = new_node
                 return
-        raise Exception('Node with data %s is not found' % target_node_data')
+        raise Exception('Node with data %s is not found' % target_node_data)
+
+    def add_before(self, target_node_data, new_node):
+        if self.head is None:
+            raise Exception('List is empty')
+        if self.head.data == target_node_data:
+            return self.add_first(new_node)
+        prev_node = self.head
+        for node in self:
+            if node.data == target_node_data:
+                prev_node.next = new_node
+                new_node.next = node
+                return
+            prev_node = node
+        raise Exception('Node with data %s is not found' % target_node_data)
+
+    def remove_node(self, target_node_data):
+        if self.head is None:
+            raise Exception('List is empty')
+        if self.head.data == target_node_data:
+            self.head = self.head.next
+            return
+        previous_node = self.head
+        for node in self:
+            if node.data == target_node_data:
+                previous_node.next = node.next
+                return
+            previous_node = node
+        raise Exception('Node with data %s not found' % target_node_data)
 
     def list_length(self):
         temp = self.head
@@ -80,3 +123,23 @@ class LinkedList:
         else:
             for i in l2_sub_l1:
                 l1[i].add_left(['0']) """
+
+
+class CircularLinkedList:
+    def __init__(self) -> None:
+        self.head = None
+
+    def traverse(self, starting_point=None):
+        if starting_point is None:
+            starting_point = self.head
+        node = starting_point
+        while node is not None and (node.next != starting_point):
+            yield node
+            node = node.next
+        yield node
+
+    def print_list(self, starting_point=None):
+        nodes = []
+        for node in self.traverse(starting_point):
+            nodes.append(str(node))
+        print("->".join(nodes))
