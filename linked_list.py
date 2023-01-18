@@ -14,7 +14,7 @@ class Node:
 
     """Definition for circular list of nodes"""
 
-    def __init__(self, data): 
+    def __init__(self, data):
         self.data = data
         self.next = None
 
@@ -88,6 +88,15 @@ class LinkedList:
                 return
             previous_node = node
         raise Exception('Node with data %s not found' % target_node_data)
+
+    def get_list_element(self, target_node_data):
+        if self.head is None:
+            raise Exception('List is empty')
+        if self.head.data == target_node_data:
+            self.head.data = target_node_data
+            yield self.head
+        yield self.head
+        return
 
     def list_length(self):
         temp = self.head
