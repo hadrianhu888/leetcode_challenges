@@ -5,6 +5,7 @@ class Node:
 
 
 class LinkedList:
+
     def __init__(self):
         self.head = None
 
@@ -23,9 +24,27 @@ class LinkedList:
             yield node
             node = node.next
 
-    def __repr__(self, data) -> str:
-        self.data = data
-        return self.data
+    def add_first(self, node):
+        node.next = self.head
+        self.head = node
+
+    def add_last(self, node):
+        if self.head is None:
+            self.head = node
+            return
+        for current_node in self:
+            pass
+        current_node.next = node
+
+    def add_after(self, target_node_data, new_node):
+        if self.head is None:
+            raise Exception('List is empty')
+        for node in self:
+            if node.data == target_node_data:
+                new_node.next = node.next
+                node.next = new_node
+                return
+        raise Exception('Node with data %s is not found' % target_node_data')
 
     def list_length(self):
         temp = self.head
@@ -36,6 +55,9 @@ class LinkedList:
         return count
 
 
+"""     def __repr__(self, data) -> str:
+        self.data = data
+        return self.data """
 """     def __repr__(self) -> str:
         node = self.head
         nodes = []

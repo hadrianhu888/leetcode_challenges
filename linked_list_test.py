@@ -19,3 +19,10 @@ print(llist)
 
 for node in llist:
     print(node)
+llist = LinkedList(["a", "b", "c", "d", "e"])
+print(llist)
+
+llist.add_last(Node("e"))
+llist.add_last(Node("f"))
+
+print(llist)
