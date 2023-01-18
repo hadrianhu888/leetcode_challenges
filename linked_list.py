@@ -1,30 +1,51 @@
 class Node:
-    def __init__(self,data):
+    def __init__(self, data):
         self.data = data
         self.next = None
-    def __repr__(self) -> str:
-        return self.data
+
 
 class LinkedList:
     def __init__(self):
         self.head = None
-        
-    def __repr__(self) -> str:
+
+    def __init__(self, nodes=None):
+        self.head = None
+        if nodes is not None:
+            node = Node(data=nodes.pop(0))
+            self.head = node
+            for elem in nodes:
+                node.next = Node(data=elem)
+                node = node.next
+
+    def __iter__(self):
+        node = self.head
+        while node is not None:
+            yield node
+            node = node.next
+
+    def __repr__(self, data) -> str:
+        self.data = data
+        return self.data
+
+    def list_length(self):
+        temp = self.head
+        count = 0
+        while (temp):
+            count += 1
+            temp = temp.next
+        return count
+
+
+"""     def __repr__(self) -> str:
         node = self.head
         nodes = []
         while node is not None:
             nodes.append(node.data)
             node = node.next
         nodes.append(None)
-        return "-> ".join(nodes)
-    def l_length(self):
-        temp=self.head
-        count = 0
-        while (temp):
-            count+=1
-            temp = temp.next
-        return count
-    def iter_append_left(self,l1,l2):
+        return "-> ".join(nodes) """
+
+"""     def iter_append_left(self,l1,l2):
         l1 = LinkedList()
         l2 = LinkedList()
         l1_length = l1.l_length()
@@ -36,5 +57,4 @@ class LinkedList:
                 l2[i].add_left(['0'])
         else:
             for i in l2_sub_l1:
-                l1[i].add_left(['0'])
-
+                l1[i].add_left(['0']) """
