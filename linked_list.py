@@ -23,6 +23,7 @@ class LinkedList:
 
     def __init__(self):
         self.head = None
+        self.next = None
 
     def __init__(self, nodes=None):
         self.head = None
@@ -89,14 +90,20 @@ class LinkedList:
             previous_node = node
         raise Exception('Node with data %s not found' % target_node_data)
 
-    def get_list_element(self, target_node_data):
-        if self.head is None:
-            raise Exception('List is empty')
-        if self.head.data == target_node_data:
-            self.head.data = target_node_data
-            yield self.head
-        yield self.head
-        return
+    def get_list_element_iter(self, target_node_data):
+        current = self.head
+        while current != None:
+            if current.data == target_node_data:
+                return True
+            current = current.next
+        return False
+
+    def get_list_element_rec(self, target_node_data, key):
+        if (not target_node_data):
+            return False
+        if (target_node_data.data == key):
+            return True
+        return self.get_list_element_rec(target_node_data.next, key)
 
     def list_length(self):
         temp = self.head
@@ -105,6 +112,14 @@ class LinkedList:
             count += 1
             temp = temp.next
         return count
+
+    def reverse(self, head):
+        if head is None or head.next is None:
+            return head
+        rest = self.reverse(head.next)
+        head.next.next = head
+        head.next = None
+        return rest
 
 
 """     def __repr__(self, data) -> str:
