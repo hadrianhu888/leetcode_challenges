@@ -121,6 +121,12 @@ class LinkedList:
         head.next = None
         return rest
 
+    def list_queue(self, head):
+        if head is None or head.next is None:
+            return head
+        if head is not None and head.next is not None:
+            head.next = head
+
 
 """     def __repr__(self, data) -> str:
         self.data = data
