@@ -24,6 +24,7 @@ class LinkedList:
     def __init__(self):
         self.head = None
         self.next = None
+        self.tail = None
 
     def __init__(self, nodes=None):
         self.head = None
@@ -60,7 +61,7 @@ class LinkedList:
                 new_node.next = node.next
                 node.next = new_node
                 return
-        raise Exception('Node with data %s is not found' % target_node_data)
+            raise Exception('Node with data %s is not found' % target_node_data)
 
     def add_before(self, target_node_data, new_node):
         if self.head is None:
@@ -126,6 +127,18 @@ class LinkedList:
             return head
         if head is not None and head.next is not None:
             head.next = head
+        raise Exception('Node with data %s is not found' % head)
+
+    def list_deque (self,head):
+        if head.tail is None or head.next is None: 
+            return self.head
+        if head is not None or head.next is not None:
+            return self.tail 
+        else:
+            self.tail = self.head 
+            self.head = self.tail
+        raise Exception('Node with data %s is not found' % head)
+
 
 
 """     def __repr__(self, data) -> str:
