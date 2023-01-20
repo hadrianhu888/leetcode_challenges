@@ -3,18 +3,25 @@
      def __init__(self, val=0, next=None):
          self.val = val
          self.next = next """
-         
-class Node:
-    def __init__(self,data):
+
+import linked_list
+from linked_list import *
+
+""" class Node:
+    def __init__(self, data):
         self.data = data
-        self.next = None
+        self.next = None """
+
+
 class Solution(object):
-    def addTwoNumbers(self, first,second):
+    def addTwoNumbers(self, first, second):
         """
         :type first: ListNode
         :type second: ListNode
         :rtype: ListNode
         """
+        first = LinkedList([])
+        second = LinkedList([])
         prev = None
         temp = None
         carry = 0
@@ -37,7 +44,7 @@ class Solution(object):
             sum %= 10
             temp = Node(sum)
             if self.head is None:
-                self.head = temp 
+                self.head = temp
             else:
                 self.next = temp
             prev = temp
@@ -47,7 +54,8 @@ class Solution(object):
                 second = second.next
         if carry > 0:
             temp.next = Node(carry)
-    def subTwoNumbers(self,first,second):
+
+    def subTwoNumbers(self, first, second):
         """
         subtracts two lists of numbers via linked list
         :type first: ListNode
@@ -66,9 +74,9 @@ class Solution(object):
                 secondData = 0
             else:
                 secondData = second.data
-            diff = carry 
+            diff = carry
             diff -= firstData
-            diff -= secondData 
+            diff -= secondData
             if diff > 10:
                 carry = 1
             else:
@@ -76,7 +84,7 @@ class Solution(object):
             diff %= 10
             temp = Node(diff)
             if self.head is None:
-                self.head = temp 
+                self.head = temp
             else:
                 self.next = temp
             prev = temp
@@ -84,11 +92,25 @@ class Solution(object):
                 first = first.next
             if second is not None:
                 second = second.next
-        if carry > 0:  
+        if carry > 0:
             temp.next = Node(carry)
+
     def printList(self):
         temp = self.head
         while temp:
             print(temp.data)
             temp = temp.next
-    
+
+
+if __name__ == "__main__":
+    first = Node(2)
+    first.next = Node(4)
+    first.next.next = Node(3)
+    second = Node(5)
+    second.next = Node(6)
+    second.next.next = Node(4)
+    s = Solution()
+    s.addTwoNumbers(first, second)
+    s.printList()
+    s.subTwoNumbers(first, second)
+    s.printList()
