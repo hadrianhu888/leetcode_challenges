@@ -141,12 +141,18 @@ class LinkedList:
         raise Exception('Node with data %s is not found' % head)
     """
     def list_queue(self,head):
+        """
+        Queues a queue
+        """
         if head is None or head.next is None:
             return head
         if head is not None and head.next is not None:
             head.next = head
         raise Exception('Node with data %s is not found' % head)
     def list_deque(self,head):
+        """
+        Deques a queue 
+        """
         if head.tail is None or head.next is None:
             return self.head
         if head is not None or head.next is not None:
