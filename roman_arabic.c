@@ -14,47 +14,37 @@
 #include <string.h>
 #include <ctype.h>
 #include <assert.h> 
+#include <errno.h>
+#include <limits.h>
 
 char *roman; 
 char *arabic;
 
 typedef struct roman_arabic {
-    char roman;
-    int arabic;
+    char *roman; 
+    char *arabic; 
 } roman_arabic_t; 
 
 typedef struct arabic_roman {
-    int arabic;
-    char roman[4];
-} arabic_roman_t; 
+    char *arabic;
+    char *roman;
+} arabic_roman_t;
 
-roman_arabic_t roman_arabic_table[] = {
-    {'I', 1},
-    {'V', 5},
-    {'X', 10},
-    {'L', 50},
-    {'C', 100},
-    {'D', 500},
-    {'M', 1000},
-    {'\0', 0}
-};
+roman_arabic_t roman_arabic_table[] =
+{   {"I", "1"},    {"II", "2"},    {"III", "3"},    {"IV", "4"},
+    {"V", "5"},    {"VI", "6"},    {"VII", "7"},    {"VIII", "8"},
+    {"IX", "9"},   {"X", "10"},    {"XL", "40"},    {"L", "50"},
+    {"XC", "90"},  {"C", "100"},   {"CD", "400"},   {"D", "500"},
+    {"DC", "600"}, {"DCC", "700"}, {"DCCC", "800"}, {"CM", "900"},
+    {"M", "1000"}, {"", ""}}; 
 
-arabic_roman_t arabic_roman_table[] = {
-    {1, "I"},
-    {4, "IV"},
-    {5, "V"},
-    {9, "IX"},
-    {10, "X"},
-    {40, "XL"},
-    {50, "L"},
-    {90, "XC"},
-    {100, "C"},
-    {400, "CD"},
-    {500, "D"},
-    {900, "CM"},
-    {1000, "M"},
-    {0, ""}
-};
+arabic_roman_t arabic_roman_table[] = 
+{   {"1", "I"},    {"2", "II"},    {"3", "III"},    {"4", "IV"},
+    {"5", "V"},    {"6", "VI"},    {"7", "VII"},    {"8", "VIII"},
+    {"9", "IX"},   {"10", "X"},    {"40", "XL"},    {"50", "L"},
+    {"90", "XC"},  {"100", "C"},   {"400", "CD"},   {"500", "D"},
+    {"600", "DC"}, {"700", "DCC"}, {"800", "DCCC"}, {"900", "CM"},
+    {"1000", "M"}, {"", ""}};
 
 char *roman_to_arabic(char *roman);
 char *arabic_to_roman(char *arabic); 
@@ -62,59 +52,30 @@ int main(int argc, char **argv);
 
 char *roman_to_arabic(char *roman)
 {
-    /**
-     * @brief Takes a roman numeral and converts it to an arabic numeral
-     * 
-     */
-    if (roman == NULL) {
-        return NULL;
-    } else {
-        /** 
-        * do the conversion 
-        */
-        int i = 0;
-        int j = 0;
-        int arabic = 0;
-        char *arabic_roman = roman_arabic_table[0].roman;
-        arabic = roman_arabic_table[0].arabic;
-        while (roman[i]!= '\0') {
-            arabic = roman_arabic_table[arabic].arabic;
-            arabic_roman[j] = roman_arabic_table[arabic].arabic;
-            i++;
-            j++;
-        }
-        return arabic;
+    int i;
+    char *arabic;
+    arabic = (char *)malloc(sizeof(char) * (strlen(roman) + 1));
+    for (i = 0; roman[i]!= '\0'; i++)
+    {
+        arabic[i] = (char)roman_arabic_table[roman[i]].arabic;
     }
+    arabic[i] = '\0';
+    return arabic;
 }
-
 
 char *arabic_to_roman(char *arabic)
 {
-    /**
-     * @brief Converts an arabic numeral to roman numeral
-     * 
-     */
-    if (arabic == NULL) {
-        return NULL;
-    } else {
-        /**
-         * @brief Do the conversion and keep in mind special cases and the order of the roman numerals
-         * 
-         */
-        int i = 0;
-        int j = 0;
-        int arabic = 0;
-        char *arabic_roman = arabic_roman_table[0].roman;
-        roman = arabic_roman_table[0].arabic;
-        while (roman[i]!= '\0') {
-            arabic = arabic_roman_table[arabic].roman;
-            arabic_roman[j] = arabic_roman_table[arabic].arabic;            
-            i++;
-            j++;
-        } 
+    int i;
+    char *roman;
+    roman = (char *)malloc(sizeof(char) * (strlen(arabic) + 1));
+    for (i = 0; arabic[i]!= '\0'; i++)
+    {
+        roman[i] = (char)arabic_roman_table[arabic[i]].roman;
     }
+    roman = (char *)malloc(sizeof(char) * (strlen(arabic) + 1));
     return roman;
 }
+
 
 int main(int argc, char **argv)
 {
