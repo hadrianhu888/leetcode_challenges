@@ -72,6 +72,7 @@ if __name__ == '__main__':
 """
 Output:
 Enter a roman numeral: IX
-The arabic numeral is: 4
+The arabic numeral is: 9
 The roman numeral is: XI
+The arabic numeral is: 11
 """
