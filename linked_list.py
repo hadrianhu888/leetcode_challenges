@@ -4,7 +4,6 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
-
 class LinkedList:
 
     def __init__(self, nodes=None):
@@ -102,25 +101,7 @@ class LinkedList:
         head.next.next = head
         head.next = None
         return rest
-    """
-    def list_queue(self, head):
-        
-        if head is None or head.next is None:
-            return head
-        if head is not None and head.next is not None:
-            head.next = head
-        raise Exception('Node with data %s is not found' % head)
 
-    def list_deque (self,head):
-        if head.tail is None or head.next is None: 
-            return self.head
-        if head is not None or head.next is not None:
-            return self.tail 
-        else:
-            self.tail = self.head 
-            self.head = self.tail
-        raise Exception('Node with data %s is not found' % head)
-    """
     def list_queue(self,head):
         """
         Queues a queue
@@ -142,35 +123,6 @@ class LinkedList:
             self.tail = self.head
             self.head = self.tail
         raise Exception('Node with data %s is not found' % head)
-
-
-
-"""     def __repr__(self, data) -> str:
-        self.data = data
-        return self.data """
-"""     def __repr__(self) -> str:
-        node = self.head
-        nodes = []
-        while node is not None:
-            nodes.append(node.data)
-            node = node.next
-        nodes.append(None)
-        return "-> ".join(nodes) """
-
-"""     def iter_append_left(self,l1,l2):
-        l1 = LinkedList()
-        l2 = LinkedList()
-        l1_length = l1.l_length()
-        l2_length = l2.l_length()
-        l1_sub_l2 = l1_length - l2_length
-        l2_sub_l1 = l2_length - l1_length
-        if l1_sub_l2 > 0:
-            for i in l1_sub_l2:
-                l2[i].add_left(['0'])
-        else:
-            for i in l2_sub_l1:
-                l1[i].add_left(['0']) """
-
 
 class CircularLinkedList:
     def __init__(self) -> None:
