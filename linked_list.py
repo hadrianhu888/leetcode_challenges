@@ -5,26 +5,7 @@ class Node:
         self.data = data
         self.next = None
 
-    """Definition for doubly linked list of nodes"""
-
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-        self.previous = None
-
-    """Definition for circular list of nodes"""
-
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-
-
 class LinkedList:
-
-    def __init__(self):
-        self.head = None
-        self.next = None
-        self.tail = None
 
     def __init__(self, nodes=None):
         self.head = None

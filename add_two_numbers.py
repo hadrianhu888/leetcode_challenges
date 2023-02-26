@@ -100,9 +100,8 @@ class Solution(object):
         while temp:
             print(temp.data)
             temp = temp.next
-
-
-if __name__ == "__main__":
+def main():
+    """Test out the functions"""
     first = Node(2)
     first.next = Node(4)
     first.next.next = Node(3)
@@ -115,3 +114,6 @@ if __name__ == "__main__":
     s.subTwoNumbers(first, second)
     s.printList()
 
+if __name__ == "__main__":
+    main()
+    
