@@ -1,7 +1,3 @@
-import numpy as np
-from numpy import pi
-import pandas as pd
-
 
 def octal2binary(octal):
     binary = ''

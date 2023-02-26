@@ -1,0 +1,10 @@
+# keep the following files
+*.py
+*.c 
+*.cpp
+*.h
+*.hpp
+*.txt
+*.md
+*.csv 
+
